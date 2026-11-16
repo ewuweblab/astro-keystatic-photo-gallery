@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+
+const galleries = (await getCollection('galleries')).sort(
+  (a, b) => (b.data.date?.valueOf() ?? 0) - (a.data.date?.valueOf() ?? 0)
+);
+---
+
+<Base title="Photo Gallery">
+  <h1>Galleries</h1>
+  {
+    galleries.length === 0 ? (
+      <p>
+        No galleries yet. Create one in the <a href="/keystatic">Keystatic admin</a>.
+      </p>
+    ) : (
+      <div class="grid">
+        {galleries.map((g) => (
+          <a href={`/galleries/${g.id}/`}>
+            <figure>
+              <Image src={g.data.cover} alt={g.data.coverAlt} width={640} />
+              <figcaption>{g.data.title}</figcaption>
+            </figure>
+          </a>
+        ))}
+      </div>
+    )
+  }
+</Base>

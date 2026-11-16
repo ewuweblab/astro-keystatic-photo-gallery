@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const galleries = await getCollection('galleries');
+  return galleries.map((gallery) => ({
+    params: { slug: gallery.id },
+    props: { gallery },
+  }));
+}
+
+const { gallery } = Astro.props;
+const { Content } = await render(gallery);
+---
+
+<Base title={gallery.data.title}>
+  <h1>{gallery.data.title}</h1>
+  {gallery.data.date && <time datetime={gallery.data.date.toISOString()}>{gallery.data.date.toLocaleDateString()}</time>}
+  <Content />
+  <div class="grid">
+    {
+      gallery.data.photos.map((photo) => (
+        <figure>
+          <Image src={photo.image} alt={photo.alt} width={800} />
+          {photo.caption && <figcaption>{photo.caption}</figcaption>}
+        </figure>
+      ))
+    }
+  </div>
+</Base>
