@@ -19,4 +19,4 @@ Open `http://127.0.0.1:4321/keystatic` while the dev server runs.
 - **Images** go in `src/assets/galleries/`, so `astro:assets` optimizes them at build time.
 - The schema is in `keystatic.config.ts`, and the matching Astro content collection is in `src/content.config.ts`. Change both together.
 
-Storage is `local`, so edits are written to disk and you commit them yourself. To edit on a deployed site, switch `storage` to `github` (see the Keystatic docs).
+Storage is `local`, so edits are written to disk and you commit them yourself. To deploy to Cloudflare and edit on the live site with Keystatic Cloud, see [docs/keystatic-cloud.md](docs/keystatic-cloud.md).

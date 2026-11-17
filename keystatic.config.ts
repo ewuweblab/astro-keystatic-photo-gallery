@@ -1,8 +1,11 @@
 import { config, fields, collection } from '@keystatic/core';
 
 export default config({
-  storage: {
-    kind: 'local',
+  // Local files while running `astro dev`; Keystatic Cloud on the deployed site.
+  storage: import.meta.env.DEV ? { kind: 'local' } : { kind: 'cloud' },
+  cloud: {
+    // TODO: replace with the identifier from your Keystatic Cloud project's settings page.
+    project: 'your-team/your-project',
   },
   ui: {
     brand: { name: 'Photo Gallery' },

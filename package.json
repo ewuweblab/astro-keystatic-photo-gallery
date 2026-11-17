@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^14.4.8",
     "@astrojs/markdoc": "^2.1.5",
     "@astrojs/node": "^11.1.13",
     "@astrojs/react": "^7.1.9",
@@ -23,7 +24,8 @@
     "astro": "^7.4.12",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "tailwindcss": "^4.3.5"
+    "tailwindcss": "^4.3.5",
+    "wrangler": "^4.163.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.20"
